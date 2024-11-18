@@ -61,7 +61,7 @@ jobs:
 
     - if: ${{ steps.cache-cargo.outputs.cache-hit != 'true' }}
       name: Install (LKG) cargo2junit
-      run: cargo install --locked cargo2junit
+      run: cargo install --git https://github.com/yonasBSD/cargo2junit
 
     - name: Build
       run: cargo build
