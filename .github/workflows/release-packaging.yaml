@@ -12,7 +12,7 @@ jobs:
   release:
     name: Release Packaging
     env:
-      PROJECT_NAME_UNDERSCORE: test2
+      PROJECT_NAME_UNDERSCORE: cargo2junit
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
