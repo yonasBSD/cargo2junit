@@ -1,0 +1,31 @@
+# nfpm example configuration file
+#
+# check https://nfpm.goreleaser.com/configuration for detailed usage
+#
+name: "cargo2junit"
+arch: "amd64"
+platform: "linux"
+version: "1.0.0"
+section: "default"
+priority: "extra"
+provides:
+- cargo2junit
+maintainer: "John Doe <john@example.com>"
+description: |
+  Converts cargo's json output (from stdin) to JUnit XML (to stdout).
+vendor: "FooBar Corp"
+homepage: "http://github.com/yonasBSD/cargo2junit"
+license: "MIT"
+changelog: "changelog.yaml"
+contents:
+- src: ./target/release/cargo2junit
+  dst: /usr/bin/cargo2junit
+overrides:
+  rpm:
+    scripts:
+      preinstall: ./scripts/preinstall.sh
+      postremove: ./scripts/postremove.sh
+  deb:
+    scripts:
+      postinstall: ./scripts/postinstall.sh
+      preremove: ./scripts/preremove.sh
