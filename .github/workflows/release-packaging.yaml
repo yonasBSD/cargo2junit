@@ -34,7 +34,7 @@ jobs:
            mkdir scripts
            touch foo bar scripts/postremove.sh scripts/preremove.sh scripts/preinstall.sh scripts/postinstall.sh changelog.yaml foobar.conf
            for pkg in deb apk archlinux rpm ipk; do
-              ./nfpm/nfpm package -p $pkg
+              nfpm package -p $pkg
            done
 
       - name: Upload Artifact
