@@ -29,7 +29,7 @@ jobs:
           VERSION: ${{ github.ref_name }}
         run: |
            wget https://github.com/goreleaser/nfpm/releases/download/v${NFPM_VERSION}/nfpm_${NFPM_VERSION}_amd64.deb
-           dpkg -i *deb
+           sudo dpkg -i *deb
            sed -i -E "s/^version:.+$/version: $VERSION/g" nfpm.yaml
            mkdir scripts
            touch foo bar scripts/postremove.sh scripts/preremove.sh scripts/preinstall.sh scripts/postinstall.sh changelog.yaml foobar.conf
