@@ -21,14 +21,15 @@ jobs:
       - name: Release Build
         run: cargo build --release
 
+      - name: Set env
+        run: echo "NFPM_VERSION=$(curl -sL https://api.github.com/repos/goreleaser/nfpm/releases/latest | jq -r ".tag_name" | cut -d'v' -f2)" >> $GITHUB_ENV
+
       - name: Create Packages
         env:
           VERSION: ${{ github.ref_name }}
         run: |
-           git clone --depth 1 https://github.com/goreleaser/nfpm
-           cd nfpm
-           go build -v ./cmd/nfpm
-           cd ..
+           wget https://github.com/goreleaser/nfpm/releases/download/v${NFPM_VERSION}/nfpm_${NFPM_VERSION}_amd64.deb
+           dpkg -i *deb
            sed -i -E "s/^version:.+$/version: $VERSION/g" nfpm.yaml
            mkdir scripts
            touch foo bar scripts/postremove.sh scripts/preremove.sh scripts/preinstall.sh scripts/postinstall.sh changelog.yaml foobar.conf
