@@ -5,8 +5,8 @@ set -e
 os=$(grep ^ID= /etc/os-release | cut -d'=' -f2-)
 arch=""
 case "${os}" in
-  ubuntu) arch=_amd64.deb ;;
-  debian) arch=_amd64.deb ;;
+  ubuntu) arch=amd64.deb ;;
+  debian) arch=amd64.deb ;;
   *) arch= ;;
 esac
 
