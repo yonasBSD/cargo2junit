@@ -18,5 +18,5 @@ fi
 version=$(curl -sL https://api.github.com/repos/yonasBSD/cargo2junit/releases/latest | jq -r ".tag_name" | cut -d'v' -f2)
 bin=cargo2junit_${version}_${arch}
 wget https://github.com/yonasBSD/cargo2junit/releases/download/v${version}/${bin}
-sudo dpkg -i cargo2junit_${bin}
-rm cargo2junit_${bin}
+sudo dpkg -i ${bin}
+rm ${bin}
